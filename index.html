@@ -13,7 +13,7 @@
   <h1>日本語 → 英語 単語テスト</h1>
   <form id="wordTest">
     <div class="question">
-      1. 猫<br>
+      1. 犬<br>
       <input type="text" name="q1" placeholder="Type English here">
     </div>
     <div class="question">
@@ -29,7 +29,7 @@
   <div class="result" id="result"></div>
   <script>
     function checkAnswers() {
-      const answers = ["cat", "water", "school"];
+      const answers = ["dog", "water", "school"];
       let score = 0;
       let form = document.forms.wordTest;
       if(form.q1.value.trim().toLowerCase() === answers[0]) score++;
