@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>English Test</title>
+</head>
+<body>
+  <h1>Simple English Test</h1>
+  <form id="testForm">
+    <label>1. What is the capital of England?</label><br>
+    <input type="text" name="q1"><br><br>
+
+    <label>2. Choose the correct word: "She ___ to school every day."</label><br>
+    <select name="q2">
+      <option value="go">go</option>
+      <option value="goes">goes</option>
+      <option value="going">going</option>
+    </select><br><br>
+
+    <button type="button" onclick="checkAnswers()">Submit</button>
+  </form>
+  <div id="result"></div>
+  <script>
+    function checkAnswers() {
+      const form = document.forms.testForm;
+      let score = 0;
+      if(form.q1.value.trim().toLowerCase() === "london") score++;
+      if(form.q2.value === "goes") score++;
+      document.getElementById('result').innerText = `Your score: ${score}/2`;
+    }
+  </script>
+</body>
+</html>
