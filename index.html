@@ -1,32 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>English Test</title>
+  <title>Japanese to English Word Test</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; }
+    .question { margin-bottom: 15px; }
+    .result { margin-top: 20px; font-weight: bold; }
+  </style>
 </head>
 <body>
-  <h1>Simple English Test</h1>
-  <form id="testForm">
-    <label>1. What is the capital of England?</label><br>
-    <input type="text" name="q1"><br><br>
-
-    <label>2. Choose the correct word: "She ___ to school every day."</label><br>
-    <select name="q2">
-      <option value="go">go</option>
-      <option value="goes">goes</option>
-      <option value="going">going</option>
-    </select><br><br>
-
-    <button type="button" onclick="checkAnswers()">Submit</button>
+  <h1>日本語 → 英語 単語テスト</h1>
+  <form id="wordTest">
+    <div class="question">
+      1. 猫<br>
+      <input type="text" name="q1" placeholder="Type English here">
+    </div>
+    <div class="question">
+      2. 水<br>
+      <input type="text" name="q2" placeholder="Type English here">
+    </div>
+    <div class="question">
+      3. 学校<br>
+      <input type="text" name="q3" placeholder="Type English here">
+    </div>
+    <button type="button" onclick="checkAnswers()">採点する / Check Answers</button>
   </form>
-  <div id="result"></div>
+  <div class="result" id="result"></div>
   <script>
     function checkAnswers() {
-      const form = document.forms.testForm;
+      const answers = ["cat", "water", "school"];
       let score = 0;
-      if(form.q1.value.trim().toLowerCase() === "london") score++;
-      if(form.q2.value === "goes") score++;
-      document.getElementById('result').innerText = `Your score: ${score}/2`;
+      let form = document.forms.wordTest;
+      if(form.q1.value.trim().toLowerCase() === answers[0]) score++;
+      if(form.q2.value.trim().toLowerCase() === answers[1]) score++;
+      if(form.q3.value.trim().toLowerCase() === answers[2]) score++;
+      document.getElementById('result').innerText = `Your score: ${score}/3`;
     }
   </script>
 </body>
