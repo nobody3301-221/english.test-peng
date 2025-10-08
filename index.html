@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>日本語→英語 単語テスト</title>
+  <title>super check ver.07</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 40px; }
     #testBox { margin-bottom: 20px; }
@@ -10,14 +10,19 @@
     #detailButton { margin-top: 10px; display: none;}
     #details { white-space: pre-wrap; margin-top: 15px; }
     .nobody-sign {
-      position: absolute;
-      bottom: 2px;
-      right: 10px;
-      font-size: 10px;
-      color: #888;
-      opacity: 0.7;
-      pointer-events: none;
-      user-select: none;
+      display: block;
+      margin-top: 8px;
+      text-align: center;
+      font-size: 12px;
+      color: #555;
+      opacity: 0.8;
+      letter-spacing: 1px;
+    }
+    .nobody-sign span {
+      background: #eef;
+      border-radius: 7px;
+      padding: 2px 10px;
+      border: 1px solid #cce;
     }
   </style>
 </head>
@@ -61,12 +66,12 @@
           };
         }
       } else {
-        // 結果表示（点数のみ＋nobodyサイン）
+        // 結果表示（点数のみ＋サインを分かりやすく表示）
         document.getElementById('testBox').innerHTML = "";
         document.getElementById('nextButton').style.display = "none";
         document.getElementById('result').innerHTML =
           `あなたの得点: ${score}/${questions.length}` +
-          `<span class="nobody-sign">nobody</span>`;
+          `<div class="nobody-sign"><span>作成：nobody3301-221</span></div>`;
         document.getElementById('detailButton').style.display = "inline-block";
         // 詳細テキストを準備
         detailsText = "";
