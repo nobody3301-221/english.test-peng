@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>管理者用単語リスト編集ページ</title>
+  <title>管理者用 単語リスト編集ページ</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 40px; }
     table { border-collapse: collapse; margin-bottom: 20px; }
@@ -37,7 +37,7 @@
   </div>
 
   <script>
-    // ここでパスワードを設定（例：mysecretpassword）
+    // ここでパスワードを設定 (horikoshi)
     const CORRECT_PASSWORD = "horikoshi";
 
     // ログインフォーム制御
@@ -102,4 +102,15 @@
       }
     };
     document.getElementById('downloadBtn').onclick = function() {
-
+      const txt = words.map(w => `${w.jp},${w.en}`).join('\n');
+      const blob = new Blob([txt], {type: "text/plain"});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = "words.txt";
+      a.click();
+      URL.revokeObjectURL(url);
+    };
+  </script>
+</body>
+</html>
