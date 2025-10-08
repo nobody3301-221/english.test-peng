@@ -10,6 +10,7 @@
     input[type="text"] { width: 120px; }
     #adminContent { display: none; }
     #errorMsg { color: red; }
+    .edit-btn { margin-right: 8px; }
   </style>
 </head>
 <body>
@@ -26,8 +27,9 @@
 
   <!-- 管理者用コンテンツ -->
   <div id="adminContent">
+    <h2>単語リスト編集</h2>
     <div id="wordListBox">ロード中...</div>
-    <h2>新しい単語追加</h2>
+    <h3>新しい単語追加</h3>
     <form id="addForm">
       日本語: <input type="text" id="newJp">
       英語: <input type="text" id="newEn">
@@ -37,10 +39,8 @@
   </div>
 
   <script>
-    // ここでパスワードを設定 (horikoshi)
     const CORRECT_PASSWORD = "horikoshi";
 
-    // ログインフォーム制御
     document.getElementById('loginForm').onsubmit = function(e) {
       e.preventDefault();
       const input = document.getElementById('adminPassword').value;
@@ -52,10 +52,9 @@
       }
     };
 
-    // 以下は管理者機能（パスワード認証後のみ表示）
+    // 編集機能
     let words = [];
     let wordListBox = document.getElementById('wordListBox');
-    // words.txtの読み込み
     fetch('words.txt')
       .then(res => res.text())
       .then(text => {
@@ -74,13 +73,14 @@
       });
 
     function renderTable() {
-      let html = `<table><tr><th>#</th><th>日本語</th><th>英語</th><th>削除</th></tr>`;
+      let html = `<table><tr><th>#</th><th>日本語</th><th>英語</th><th>編集</th><th>削除</th></tr>`;
       words.forEach((w, i) => {
         html += `<tr>
           <td>${i+1}</td>
-          <td>${w.jp}</td>
-          <td>${w.en}</td>
-          <td><button onclick="deleteWord(${i})">削除</button></td>
+          <td><input type="text" value="${w.jp}" onchange="window.updateWord(${i}, 'jp', this.value)" /></td>
+          <td><input type="text" value="${w.en}" onchange="window.updateWord(${i}, 'en', this.value)" /></td>
+          <td><button class="edit-btn" onclick="window.editWord(${i})">編集</button></td>
+          <td><button class="edit-btn" onclick="window.deleteWord(${i})">削除</button></td>
         </tr>`;
       });
       html += "</table>";
@@ -89,6 +89,13 @@
     window.deleteWord = function(idx) {
       words.splice(idx, 1);
       renderTable();
+    };
+    window.updateWord = function(idx, key, val) {
+      words[idx][key] = val;
+      renderTable();
+    };
+    window.editWord = function(idx) {
+      alert('セルを書き換えてください');
     };
     document.getElementById('addForm').onsubmit = function(e) {
       e.preventDefault();
