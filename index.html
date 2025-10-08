@@ -7,6 +7,8 @@
     body { font-family: Arial, sans-serif; margin: 40px; }
     #testBox { margin-bottom: 20px; }
     .result { font-weight: bold; margin-top: 20px; }
+    #detailButton { margin-top: 10px; display: none;}
+    #details { white-space: pre-wrap; margin-top: 15px; }
   </style>
 </head>
 <body>
@@ -14,11 +16,14 @@
   <div id="testBox">ロード中...</div>
   <button id="nextButton" style="display:none;">次へ</button>
   <div class="result" id="result"></div>
+  <button id="detailButton" onclick="showDetails()">答え合わせを見る</button>
+  <div id="details"></div>
   <script>
     let questions = [];
     let current = 0;
     let score = 0;
     let answers = [];
+    let detailsText = "";
 
     function showQuestion(idx) {
       if (idx < questions.length) {
@@ -31,17 +36,21 @@
         document.getElementById('nextButton').textContent = idx === questions.length - 1 ? "採点する" : "次へ";
         document.getElementById('nextButton').style.display = "inline-block";
         document.getElementById('result').textContent = "";
+        document.getElementById('detailButton').style.display = "none";
+        document.getElementById('details').textContent = "";
       } else {
-        // 結果表示
-        let resultText = `あなたの得点: ${score}/${questions.length}\n`;
-        questions.forEach((q, i) => {
-          resultText += `問${i+1}: ${q.jp} → ${answers[i] || "(無回答)"}  `;
-          resultText += (answers[i] && answers[i].toLowerCase() === q.en) ? "○" : `×（正解: ${q.en}）`;
-          resultText += "\n";
-        });
+        // 結果表示（点数のみ）
         document.getElementById('testBox').innerHTML = "";
         document.getElementById('nextButton').style.display = "none";
-        document.getElementById('result').textContent = resultText;
+        document.getElementById('result').textContent = `あなたの得点: ${score}/${questions.length}`;
+        document.getElementById('detailButton').style.display = "inline-block";
+        // 詳細テキストを準備
+        detailsText = "";
+        questions.forEach((q, i) => {
+          detailsText += `問${i+1}: ${q.jp} → ${answers[i] || "(無回答)"}  `;
+          detailsText += (answers[i] && answers[i].toLowerCase() === q.en) ? "○" : `×（正解: ${q.en}）`;
+          detailsText += "\n";
+        });
       }
     }
 
@@ -54,6 +63,11 @@
       current++;
       showQuestion(current);
     };
+
+    function showDetails() {
+      document.getElementById('details').textContent = detailsText;
+      document.getElementById('detailButton').style.display = "none";
+    }
 
     // words.txtから問題データを読み込む
     fetch('words.txt')
