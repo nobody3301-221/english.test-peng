@@ -1,3 +1,22 @@
-犬,dog
-水,water
-学校,school
+join, 参加する  
+soon, すぐに  
+message, メッセージ  
+right now, すぐに  
+hold on, 待つ  
+sleep, 眠る  
+laugh, 笑う  
+on a break, 休憩中  
+take a break, 休憩をとる  
+look for, ～を探す  
+wait for, ～を待つ  
+weather, 天気  
+wrong, 間違っている  
+belong to, ～に属する  
+difference, 違い  
+funny / fun, 楽しい（こと）  /をつけてふたつ
+sick, 病気の  
+away, 離れて  
+lonely, 孤独な・さみしい  
+around, ～のまわり  
+world, 世界  
+worry about, ～を心配する  
