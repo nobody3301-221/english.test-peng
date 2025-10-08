@@ -1,17 +1,17 @@
 参加する,join
 すぐに sではじまる,soon
 メッセージ,message
-すぐに　rで始まる,right now
-持つ,hold on
+すぐに　rで始まる　二単語,right now
+持つ　二単語,hold on
 寝る,sleep
 笑う,laugh
-休憩中,on a break
-休憩する,take a break
-〜を探す,look for
-〜を待つ,wait for
+休憩中　三単語,on a break
+休憩する　三単語,take a break
+〜を探す　二単語,look for
+〜を待つ　二単語,wait for
 天気,weather
 間違い・悪い,wrong
-〜に所属する,belong to
+〜に所属する　二単語,belong to
 違い,difference
 楽しい(こと)　/をつけて二つ入力,funny / fun
 病気の,sick
@@ -19,4 +19,4 @@
 孤独な・さみしい,lonely
 〜のまわり,around
 世界,world
-〜を心配する,worry about
+〜を心配する　二単語,worry about
