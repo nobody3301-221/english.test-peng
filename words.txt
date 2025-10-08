@@ -1,0 +1,3 @@
+猫,cat
+水,water
+学校,school
