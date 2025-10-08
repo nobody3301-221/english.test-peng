@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>管理者</title>
+  <title>管理者用 単語リスト編集ページ</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 40px; }
     table { border-collapse: collapse; margin-bottom: 20px; }
@@ -14,6 +14,8 @@
 </head>
 <body>
   <h1>単語リスト管理ページ</h1>
+
+  <!-- パスワード認証フォーム -->
   <div id="loginBox">
     <form id="loginForm">
       パスワード: <input type="password" id="adminPassword">
@@ -21,6 +23,8 @@
     </form>
     <div id="errorMsg"></div>
   </div>
+
+  <!-- 管理者用コンテンツ -->
   <div id="adminContent">
     <div id="wordListBox">ロード中...</div>
     <h2>新しい単語追加</h2>
@@ -31,21 +35,16 @@
     </form>
     <button id="downloadBtn">編集したリストをダウンロード</button>
   </div>
+
   <script>
-    // SHA-256で「horikoshi」をハッシュ化した値
-    // 実際のパスワードは「horikoshi」
-    const CORRECT_HASH = "f4d5f7cfdcd2d6d8b7d9a4b8e2d352a7e1dada0f3c2b66d7e9a4c5cbb3e8d1ab";
+    // ここでパスワードを設定 (horikoshi)
+    const CORRECT_PASSWORD = "horikoshi";
 
-    async function sha256(str) {
-      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
-      return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
-    }
-
-    document.getElementById('loginForm').onsubmit = async function(e) {
+    // ログインフォーム制御
+    document.getElementById('loginForm').onsubmit = function(e) {
       e.preventDefault();
       const input = document.getElementById('adminPassword').value;
-      const hash = await sha256(input);
-      if(hash === CORRECT_HASH) {
+      if(input === CORRECT_PASSWORD) {
         document.getElementById('loginBox').style.display = "none";
         document.getElementById('adminContent').style.display = "block";
       } else {
@@ -56,6 +55,7 @@
     // 以下は管理者機能（パスワード認証後のみ表示）
     let words = [];
     let wordListBox = document.getElementById('wordListBox');
+    // words.txtの読み込み
     fetch('words.txt')
       .then(res => res.text())
       .then(text => {
@@ -72,6 +72,7 @@
       .catch(() => {
         wordListBox.textContent = 'words.txtの読み込みに失敗しました。';
       });
+
     function renderTable() {
       let html = `<table><tr><th>#</th><th>日本語</th><th>英語</th><th>削除</th></tr>`;
       words.forEach((w, i) => {
