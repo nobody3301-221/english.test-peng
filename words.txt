@@ -1,22 +1,22 @@
-参加する, join
-すぐに, soon
-メッセージ, message
-すぐに, right now
-持つ, hold on
-寝る, sleep
-笑う, laugh
-休憩中, on a break
-休憩する, take a break
-〜を探す, look for
-〜を待つ, wait for
-天気, weather
-間違い・悪い, wrong
-〜に所属する, belong to
-違い, difference
-楽しい(こと)　/をつけて二つ入力, funny / fun
-病気の, sick
-離れて, away
-孤独な・さみしい, lonely
-〜のまわり, around
-世界, world
-〜を心配する, worry about
+参加する,join
+すぐに sではじまる,soon
+メッセージ,message
+すぐに　rで始まる,right now
+持つ,hold on
+寝る,sleep
+笑う,laugh
+休憩中,on a break
+休憩する,take a break
+〜を探す,look for
+〜を待つ,wait for
+天気,weather
+間違い・悪い,wrong
+〜に所属する,belong to
+違い,difference
+楽しい(こと)　/をつけて二つ入力,funny / fun
+病気の,sick
+離れて,away
+孤独な・さみしい,lonely
+〜のまわり,around
+世界,world
+〜を心配する,worry about
