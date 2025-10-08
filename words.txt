@@ -20,17 +20,17 @@
 〜のまわり,around
 世界,world
 〜を心配する　二単語,worry about
-ユミさんと話せますか,Can I speak to Yumi, please?
-また後で,See you later.
-すぐに行きますよ,I can be there soon.
-彼は公園で走っている,He is running in the park.
-メアリーはケーキを作っている,Mary is making a cake.
-来て参加して！,えぇ、ぜひ,Come and join us! – I’d love to.
-あなたはマリアを待っているのですか？,Are you waiting for Maria?
-ケンは何を探しているのですか？,What is Ken looking for?
-あなたは何をしているのですか？,What are you doing?
-私たちは今休憩をとっているところではありません。,We are not taking a break now.
-彼はテニス部に所属しています。,He belongs to the tennis club.
-家族は彼らの子どもたちを心配しています。,Family members worry about their children.
-AとBの間の違いは何ですか？,What is the difference between A and B?
-彼女はベッドの上に座っています。,She is sitting on the bed.
+ユミさんと話せますか？（？をわすれない）,Can I speak to Yumi, please?
+また後で。（.をわすれない）,See you later.
+すぐに行きますよ。（.をわすれない）,I can be there soon.
+彼は公園で走っている。（.をわすれない）,He is running in the park.
+メアリーはケーキを作っている。（.をわすれない）,Mary is making a cake.
+来て参加して！,えぇ、ぜひ.（!,.をわすれない）,Come and join us!,I’d love to.
+あなたはマリアを待っているのですか？（？をわすれない）,Are you waiting for Maria?
+ケンは何を探しているのですか？（？をわすれない）,What is Ken looking for?
+あなたは何をしているのですか？（？をわすれない）,What are you doing?
+私たちは今休憩をとっているところではありません。（.をわすれない）,We are not taking a break now.
+彼はテニス部に所属しています。（.をわすれない）,He belongs to the tennis club.
+家族は彼らの子どもたちを心配しています。（.をわすれない）,Family members worry about their children.
+AとBの間の違いは何ですか？（？をわすれない）,What is the difference between A and B?
+彼女はベッドの上に座っています。（.をわすれない）,She is sitting on the bed.
