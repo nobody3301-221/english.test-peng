@@ -11,16 +11,11 @@
 </head>
 <body>
   <h1>日本語→英語 単語テスト（一問ずつ）</h1>
-  <div id="testBox"></div>
-  <button id="nextButton">次へ</button>
+  <div id="testBox">ロード中...</div>
+  <button id="nextButton" style="display:none;">次へ</button>
   <div class="result" id="result"></div>
   <script>
-    // 問題データ
-    const questions = [
-      { jp: "猫", en: "cat" },
-      { jp: "水", en: "water" },
-      { jp: "学校", en: "school" }
-    ];
+    let questions = [];
     let current = 0;
     let score = 0;
     let answers = [];
@@ -34,6 +29,7 @@
           </div>
         `;
         document.getElementById('nextButton').textContent = idx === questions.length - 1 ? "採点する" : "次へ";
+        document.getElementById('nextButton').style.display = "inline-block";
         document.getElementById('result').textContent = "";
       } else {
         // 結果表示
@@ -59,8 +55,23 @@
       showQuestion(current);
     };
 
-    showQuestion(current);
+    // words.txtから問題データを読み込む
+    fetch('words.txt')
+      .then(res => res.text())
+      .then(text => {
+        questions = text
+          .split('\n')
+          .map(line => line.trim())
+          .filter(line => line)
+          .map(line => {
+            const [jp, en] = line.split(',');
+            return { jp: jp, en: en };
+          });
+        showQuestion(current);
+      })
+      .catch(err => {
+        document.getElementById('testBox').innerHTML = 'words.txtの読み込みに失敗しました。';
+      });
   </script>
-  <p>nobody/takuto</p>
 </body>
 </html>
