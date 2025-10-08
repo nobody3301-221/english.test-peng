@@ -25,7 +25,7 @@
 すぐに行きますよ。（.をわすれない）,I can be there soon.
 彼は公園で走っている。（.をわすれない）,He is running in the park.
 メアリーはケーキを作っている。（.をわすれない）,Mary is making a cake.
-来て参加して！,えぇ、ぜひ.（!,.をわすれない）,Come and join us!,I’d love to.
+来て参加して！-えぇ、ぜひ.（!-.をわすれない）,Come and join us!,I’d love to.
 あなたはマリアを待っているのですか？（？をわすれない）,Are you waiting for Maria?
 ケンは何を探しているのですか？（？をわすれない）,What is Ken looking for?
 あなたは何をしているのですか？（？をわすれない）,What are you doing?
