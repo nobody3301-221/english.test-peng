@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>super check ver.07</title>
+  <title>日本語→英語 単語テスト（一問ずつ）</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 40px; }
     #testBox { margin-bottom: 20px; }
@@ -10,29 +10,40 @@
     #detailButton { margin-top: 10px; display: none;}
     #details { white-space: pre-wrap; margin-top: 15px; }
     .nobody-sign {
-      display: block;
-      margin-top: 8px;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100vw;
+      background: #eef;
+      font-size: 14px;
+      color: #333;
       text-align: center;
-      font-size: 12px;
-      color: #555;
-      opacity: 0.8;
+      padding: 8px 0;
+      border-top: 1px solid #cce;
+      opacity: 0.9;
+      z-index: 9999;
       letter-spacing: 1px;
     }
-    .nobody-sign span {
-      background: #eef;
-      border-radius: 7px;
-      padding: 2px 10px;
-      border: 1px solid #cce;
+    .nobody-sign .icon {
+      margin-right: 7px;
+      color: #669;
+      font-size: 15px;
+      vertical-align: middle;
     }
   </style>
 </head>
 <body>
-  <h1>super check ver.07</h1>
+  <h1>日本語→英語 単語テスト（一問ずつ）</h1>
   <div id="testBox">ロード中...</div>
   <button id="nextButton" style="display:none;">次へ</button>
   <div class="result" id="result"></div>
   <button id="detailButton" onclick="showDetails()">答え合わせを見る</button>
   <div id="details"></div>
+  <!-- 下部にサイン＋説明 -->
+  <div class="nobody-sign">
+    <span class="icon">🖊️</span>
+    このサイトは nobody3301-221 が作成・管理しています
+  </div>
   <script>
     let questions = [];
     let current = 0;
@@ -66,12 +77,11 @@
           };
         }
       } else {
-        // 結果表示（点数のみ＋サインを分かりやすく表示）
+        // 結果表示（点数のみ）
         document.getElementById('testBox').innerHTML = "";
         document.getElementById('nextButton').style.display = "none";
         document.getElementById('result').innerHTML =
-          `あなたの得点: ${score}/${questions.length}` +
-          `<div class="nobody-sign"><span>作成：nobody3301-221</span></div>`;
+          `あなたの得点: ${score}/${questions.length}`;
         document.getElementById('detailButton').style.display = "inline-block";
         // 詳細テキストを準備
         detailsText = "";
