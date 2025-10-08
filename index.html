@@ -2,45 +2,64 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>english word test -peng</title>
+  <title>日本語→英語 単語テスト（一問ずつ）</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 40px; }
-    .question { margin-bottom: 15px; }
-    .result { margin-top: 20px; font-weight: bold; }
+    #testBox { margin-bottom: 20px; }
+    .result { font-weight: bold; margin-top: 20px; }
   </style>
 </head>
 <body>
-  <h1>日本語 → 英語 単語テスト</h1>
-  <form id="wordTest">
-    <div class="question">
-      1. 犬<br>
-      <input type="text" name="q1" placeholder="Type English here">
-    </div>
-    <div class="question">
-      2. 水<br>
-      <input type="text" name="q2" placeholder="Type English here">
-    </div>
-    <div class="question">
-      3. 学校<br>
-      <input type="text" name="q3" placeholder="Type English here">
-    </div>
-      4.　猫<br>
-      <input type="text" name="q4" placeholder="Type English here">
-    </div>
-    <button type="button" onclick="checkAnswers()">採点する / Check Answers</button>
-  </form>
+  <h1>日本語→英語 単語テスト（一問ずつ）</h1>
+  <div id="testBox"></div>
+  <button id="nextButton">次へ</button>
   <div class="result" id="result"></div>
   <script>
-    function checkAnswers() {
-      const answers = ["dog", "water", "school","cat"];
-      let score = 0;
-      let form = document.forms.wordTest;
-      if(form.q1.value.trim().toLowerCase() === answers[0]) score++;
-      if(form.q2.value.trim().toLowerCase() === answers[1]) score++;
-      if(form.q3.value.trim().toLowerCase() === answers[2]) score++;
-      if(form.q4.value.trim().toLowerCase() === answers[3]) score++;
-      document.getElementById('result').innerText = `Your score: ${score}/4`;
+    // 問題データ
+    const questions = [
+      { jp: "猫", en: "cat" },
+      { jp: "水", en: "water" },
+      { jp: "学校", en: "school" }
+    ];
+    let current = 0;
+    let score = 0;
+    let answers = [];
+
+    function showQuestion(idx) {
+      if (idx < questions.length) {
+        document.getElementById('testBox').innerHTML = `
+          <div>
+            問題${idx + 1}: ${questions[idx].jp}<br>
+            <input type="text" id="answer" placeholder="Type English here">
+          </div>
+        `;
+        document.getElementById('nextButton').textContent = idx === questions.length - 1 ? "採点する" : "次へ";
+        document.getElementById('result').textContent = "";
+      } else {
+        // 結果表示
+        let resultText = `あなたの得点: ${score}/${questions.length}\n`;
+        questions.forEach((q, i) => {
+          resultText += `問${i+1}: ${q.jp} → ${answers[i] || "(無回答)"}  `;
+          resultText += (answers[i] && answers[i].toLowerCase() === q.en) ? "○" : `×（正解: ${q.en}）`;
+          resultText += "\n";
+        });
+        document.getElementById('testBox').innerHTML = "";
+        document.getElementById('nextButton').style.display = "none";
+        document.getElementById('result').textContent = resultText;
+      }
     }
+
+    document.getElementById('nextButton').onclick = function() {
+      const input = document.getElementById('answer');
+      if (input) {
+        answers[current] = input.value.trim();
+        if (input.value.trim().toLowerCase() === questions[current].en) score++;
+      }
+      current++;
+      showQuestion(current);
+    };
+
+    showQuestion(current);
   </script>
 </body>
 </html>
