@@ -24,18 +24,22 @@
       3. 学校<br>
       <input type="text" name="q3" placeholder="Type English here">
     </div>
+      4.　猫<br>
+      <input type="text" name="q4" placeholder="Type English here">
+    </div>
     <button type="button" onclick="checkAnswers()">採点する / Check Answers</button>
   </form>
   <div class="result" id="result"></div>
   <script>
     function checkAnswers() {
-      const answers = ["dog", "water", "school"];
+      const answers = ["dog", "water", "school","cat"];
       let score = 0;
       let form = document.forms.wordTest;
       if(form.q1.value.trim().toLowerCase() === answers[0]) score++;
       if(form.q2.value.trim().toLowerCase() === answers[1]) score++;
       if(form.q3.value.trim().toLowerCase() === answers[2]) score++;
-      document.getElementById('result').innerText = `Your score: ${score}/3`;
+      if(form.q4.value.trim().toLowerCase() === answers[3]) score++;
+      document.getElementById('result').innerText = `Your score: ${score}/4`;
     }
   </script>
 </body>
