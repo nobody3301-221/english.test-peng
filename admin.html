@@ -8,22 +8,53 @@
     table { border-collapse: collapse; margin-bottom: 20px; }
     th, td { border: 1px solid #ccc; padding: 8px; }
     input[type="text"] { width: 120px; }
+    #adminContent { display: none; }
+    #errorMsg { color: red; }
   </style>
 </head>
 <body>
   <h1>単語リスト管理ページ</h1>
-  <div id="wordListBox">ロード中...</div>
-  <h2>新しい単語追加</h2>
-  <form id="addForm">
-    日本語: <input type="text" id="newJp">
-    英語: <input type="text" id="newEn">
-    <button type="submit">追加</button>
-  </form>
-  <button id="downloadBtn">編集したリストをダウンロード</button>
+
+  <!-- パスワード認証フォーム -->
+  <div id="loginBox">
+    <form id="loginForm">
+      パスワード: <input type="password" id="adminPassword">
+      <button type="submit">ログイン</button>
+    </form>
+    <div id="errorMsg"></div>
+  </div>
+
+  <!-- 管理者用コンテンツ -->
+  <div id="adminContent">
+    <div id="wordListBox">ロード中...</div>
+    <h2>新しい単語追加</h2>
+    <form id="addForm">
+      日本語: <input type="text" id="newJp">
+      英語: <input type="text" id="newEn">
+      <button type="submit">追加</button>
+    </form>
+    <button id="downloadBtn">編集したリストをダウンロード</button>
+  </div>
+
   <script>
+    // ここでパスワードを設定（例：mysecretpassword）
+    const CORRECT_PASSWORD = "mysecretpassword";
+
+    // ログインフォーム制御
+    document.getElementById('loginForm').onsubmit = function(e) {
+      e.preventDefault();
+      const input = document.getElementById('adminPassword').value;
+      if(input === CORRECT_PASSWORD) {
+        document.getElementById('loginBox').style.display = "none";
+        document.getElementById('adminContent').style.display = "block";
+      } else {
+        document.getElementById('errorMsg').textContent = "パスワードが違います";
+      }
+    };
+
+    // 以下は管理者機能（パスワード認証後のみ表示）
     let words = [];
     let wordListBox = document.getElementById('wordListBox');
-
     // words.txtの読み込み
     fetch('words.txt')
       .then(res => res.text())
@@ -42,7 +73,6 @@
         wordListBox.textContent = 'words.txtの読み込みに失敗しました。';
       });
 
-    // 単語リスト表示
     function renderTable() {
       let html = `<table><tr><th>#</th><th>日本語</th><th>英語</th><th>削除</th></tr>`;
       words.forEach((w, i) => {
@@ -56,14 +86,10 @@
       html += "</table>";
       wordListBox.innerHTML = html;
     }
-
-    // 削除機能
     window.deleteWord = function(idx) {
       words.splice(idx, 1);
       renderTable();
     };
-
-    // 追加機能
     document.getElementById('addForm').onsubmit = function(e) {
       e.preventDefault();
       const jp = document.getElementById('newJp').value.trim();
@@ -75,18 +101,5 @@
         renderTable();
       }
     };
-
-    // ダウンロード機能
     document.getElementById('downloadBtn').onclick = function() {
-      const txt = words.map(w => `${w.jp},${w.en}`).join('\n');
-      const blob = new Blob([txt], {type: "text/plain"});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = "words.txt";
-      a.click();
-      URL.revokeObjectURL(url);
-    };
-  </script>
-</body>
-</html>
+
